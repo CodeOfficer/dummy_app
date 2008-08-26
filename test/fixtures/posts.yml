@@ -1,0 +1,8 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+  
+<% 15.times do |rep| %>
+<%= "post_#{rep}" %>:
+    title: <%= "title #{rep}" %>
+    body: <%= "body #{rep}" %>
+    published: false
+<% end %>

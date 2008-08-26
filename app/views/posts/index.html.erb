@@ -1,0 +1,45 @@
+<% assets_for :ui_slider, :tablesorter %>
+
+<h1><%= link_to	"Listing posts", root_path %></h1>
+
+<div class="new_button"><%= link_to 'New post', new_post_path %></div>
+
+<% form_tag(posts_path, :method => :get, :id => "the_form") do %>
+	<%= hidden_field_tag :slider_max_value, @posts.size %>
+	<%= hidden_field_tag :slider_hidden_value, params[:slider_hidden_value] %>
+	<table border="0" cellspacing="5" cellpadding="5">
+		<tr>
+			<td><span id="slider_status"></span></td>
+			<td width="200"><div id="slider_widget"></div></td>
+			<td><span id="slider_value"></span></td>
+		</tr>
+	</table>
+	<%= submit_tag "Submit" %>
+<% end %>
+
+<div id="the_div">
+<table id="mytable" class="tablesorter">
+	<thead>
+	  <tr>
+	    <th>Title</th>
+	    <th>Body</th>
+	    <th>#comments</th>
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+	</thead>
+	<tbody>
+	<% for post in @posts %>
+	  <tr>
+	    <td><%=h post.title %></td>
+	    <td><%=h post.body %></td>
+	    <td><%= post.comments_count %></td>
+	    <td><%= link_to 'Show', post %></td>
+	    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+	    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
+	  </tr>
+	<% end %>
+	</tbody>
+</table>
+</div>
